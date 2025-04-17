@@ -41,7 +41,7 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
-  gem "rspec-rails", "~> 5.0"
+  gem "rspec-rails", "~> 7.1"
   gem "factory_bot_rails", "~> 6.0"
   gem "faker", "~> 2.0"
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
