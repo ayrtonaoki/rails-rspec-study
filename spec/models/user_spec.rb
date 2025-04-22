@@ -9,12 +9,27 @@ RSpec.describe User, type: :model do
 
       expect(user.name).to eq('John Johnson')
     end
+
+    it 'creates an instance of model' do
+      expect { create(:user) }.to change { User.count }.by(1)
+    end
   end
 
   context '#factory_bot' do
     it 'same as fixtures but more idiomatic' do
-        user = create(:user)
-        expect(user.email).to eq('jack@example.com')
+      user = create(:user)
+
+      expect(user.email).to eq('admin@example.com')
+    end
+
+    it 'creates an instance of model' do
+      expect { create(:user) }.to change { User.count }.by(1)
+    end
+
+    it 'randomize data with Faker gem' do
+      user = create(:user)
+
+      expect(user.name).to be_instance_of(String)
     end
   end
 end
