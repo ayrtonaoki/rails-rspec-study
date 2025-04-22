@@ -1,0 +1,6 @@
+john:
+  name: 'John Johnson'
+  email: 'john@example.com'
+jack:
+  name: 'Jack Jackson'
+  email: 'jack@example.com'
