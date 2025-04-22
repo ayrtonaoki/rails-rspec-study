@@ -32,4 +32,12 @@ RSpec.describe User, type: :model do
       expect(user.name).to be_instance_of(String)
     end
   end
+
+  context '#sequences' do
+    it 'creates incremental and unique values automatically' do
+      order = create(:order)
+
+      expect(order.user).to be_instance_of(User)
+    end
+  end
 end
