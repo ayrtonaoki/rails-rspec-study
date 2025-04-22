@@ -10,4 +10,11 @@ RSpec.describe User, type: :model do
       expect(user.name).to eq('John Johnson')
     end
   end
+
+  context '#factory_bot' do
+    it 'same as fixtures but more idiomatic' do
+        user = create(:user)
+        expect(user.email).to eq('jack@example.com')
+    end
+  end
 end
