@@ -54,4 +54,24 @@ RSpec.describe User, type: :model do
       # expect(parsed["name"]).to be_a(String)
     end
   end
+
+  context '#webmock' do
+    it 'stub HTTP requests' do
+      stub_request(:get, "https://jsonplaceholder.typicode.com/users/1").
+      to_return(
+        status: 200,
+        body: { id: 1, name: "Leanne Graham", username: "Bret" }.to_json,
+        headers: { 'Content-Type' => 'application/json' }
+      )
+
+      response = HTTParty.get("https://jsonplaceholder.typicode.com/users/1")
+
+      expect(response.code).to eq(200)
+
+      parsed_response = response.parsed_response
+      expect(parsed_response["id"]).to eq(1)
+      expect(parsed_response["name"]).to eq("Leanne Graham")
+      expect(parsed_response["username"]).to eq("Bret")
+    end
+  end
 end
