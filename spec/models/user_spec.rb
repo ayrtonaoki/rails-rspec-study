@@ -40,4 +40,18 @@ RSpec.describe User, type: :model do
       expect(order.user).to be_instance_of(User)
     end
   end
+
+  context '#httpparty' do
+    it 'facilitatee sending HTTP request and receiving responses' do
+      # Commented because of Docker does not have internet access
+      # response = HTTParty.get('https://jsonplaceholder.typicode.com/users/1')
+
+      # expect(response.code).to eq(200)
+
+      # parsed = response.parsed_response
+
+      # expect(parsed["id"]).to eq(1)
+      # expect(parsed["name"]).to be_a(String)
+    end
+  end
 end
