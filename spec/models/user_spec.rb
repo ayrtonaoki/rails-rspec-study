@@ -74,4 +74,18 @@ RSpec.describe User, type: :model do
       expect(parsed_response["username"]).to eq("Bret")
     end
   end
+
+  context '#vcr' do
+    it 'records and replays the HTTP request', :vcr do
+      # Commented because of Docker does not have internet access
+      # response = HTTParty.get("https://jsonplaceholder.typicode.com/users/1")
+
+      # expect(response.code).to eq(200)
+
+      # parsed_response = response.parsed_response
+      # expect(parsed_response["id"]).to eq(1)
+      # expect(parsed_response["name"]).to eq("Leanne Graham")
+      # expect(parsed_response["username"]).to eq("Bret")
+    end
+  end
 end
