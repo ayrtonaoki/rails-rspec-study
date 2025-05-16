@@ -10,10 +10,16 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'webmock/rspec'
 require 'vcr'
+require "capybara/rspec"
+
+Capybara.javascript_driver = :selenium_chrome_headless
+Capybara.default_driver = :selenium_chrome_headless
+
 
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/cassettes'
   config.hook_into :webmock
+  config.ignore_localhost = true
 end
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -39,11 +45,16 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')
   ]
+
+  config.before(:each, type: :system) do
+    driven_by(:rack_test)
+  end
 
   config.include FactoryBot::Syntax::Methods
 
